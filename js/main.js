@@ -69,7 +69,7 @@ camera.position.z = 200;
 
 function animate() {
     for (let line_index = 0; line_index < line_count; line_index++) {
-        va[2*line_index] += 0.03; //Increase the velocity by the acceleration
+        va[2*line_index] += 0.005; //Increase the velocity by the acceleration
         va[2*line_index+1] += 0.025;
 
         // pa[6*line_index]++ //x Start
