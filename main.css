@@ -3,7 +3,7 @@ body {
 	background-color: #000;
 	color: #fff;
 	font-family: Monospace;
-	font-size: 13px; /*might be this lol*/
+	font-size: 13px;
 	line-height: 24px;
 	overscroll-behavior: none;
 }
