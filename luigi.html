@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <title>Marell Bito</title>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+        <link rel="manifest" href="favicon/site.webmanifest">
+        <link type="text/css" rel="stylesheet" href="css/main.css">
+    </head>
+
+  <style>
+  body {margin: 0;}
+  canvas {width: 100%; height: 100%;}
+  </style>
+
+  <body>
+    <!--include the three.js library-->
+   <script src="js/three.js"> </script>
+   <script src="js/OrbitControls.js"> </script>
+
+    <style>
+        body {
+            font-family: Monospace;
+            background-color: #000;
+            color: #fff;
+            margin: 0px;
+            overflow: hidden;
+        }
+        #info {
+            position: absolute;
+            font-size: 25px;
+            top: 40px;
+            width: 100%;
+            text-align: center;
+        }
+        #stats {
+            position: absolute;
+            font-size: 25px;
+            top: 870px;
+            right: 20px;
+            width: 100%;
+            text-align: right;
+        }
+        #controls {
+            position: absolute;
+            font-size: 25px;
+            top: 725px;
+            left: 20px;
+            width: 100%;
+            text-align: left;
+        }
+    </style>
+
+    <div class="navigation">
+        <ul>
+            <li><a href="index.html">Home Page</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="luigi.html">Luigi</a></li>
+        </ul>
+    </div>
+
+    <div id="info">
+        <p>A PC exclusive, create Luigis that circle around one big Luigi. <br>
+        Welcome, to the Luigi System.</p>
+    </div>
+
+    <div id="stats">
+      <p> Luigis Created: <span id="counter">0</span></p>
+    </div>
+
+    <div id="controls">
+      <p>Controls! <br>
+        Left Click - Rotate Camera! <br>
+        Right Click - Pan Camera! <br>
+        Mouse Wheel - Zoom in/out! <br>
+        Spacebar - Create Luigi! <br>
+        Backspace - Delete your most recent Luigi!</p>
+    </div>
+
+    <script>
+
+    //Create the scene
+    var scene = new THREE.Scene();
+    var ratio = window.innerWidth/window.innerHeight;
+    //Create the perspective camera
+    var camera = new THREE.PerspectiveCamera(45,ratio,0.1,1000);
+
+    //Setting camera position and direction
+    camera.position.set(0,0,15);
+	  camera.lookAt(0,0,1);
+
+    //create the webgl renderer
+    var renderer = new THREE.WebGLRenderer( );
+
+    //set the size of the rendering window
+    renderer.setSize(window.innerWidth,window.innerHeight);
+
+    //add the renderer to the current document
+    document.body.appendChild(renderer.domElement);
+
+    //Function that produces random inclusive integer between two given ints (used for InitialPos)
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    //Function that produces random inclusive integer between two given ints (used for Luigi Orbit variables)
+    function getRandomRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    //Creating Luigi Class
+    class Luigi {
+      constructor(sphere, initialPos, orbitOffset) {
+        this.sphere = sphere;
+        this.initialPos = initialPos;
+        this.orbitOffset = orbitOffset;
+
+        this.orbitSpeed = getRandomRange(0.001, 0.003);
+        this.orbitLength = getRandomRange(5, 15);
+      }
+    }
+
+    //Creating array of Luigis and counter variable
+    var luigiCount = 0;
+    const listLuigis = [];
+
+    function changeCount(change) {
+      if (luigiCount >= 0) {
+        luigiCount += change;
+      }
+      var counter = document.getElementById("counter");
+      counter.innerText = luigiCount;
+    }
+
+    //Generates Luigi and gives it initial position
+    function generateLuigi() {
+        var sprite = new THREE.TextureLoader().load('./images/luigi.jpg');
+
+        var material_sphere = new THREE.MeshBasicMaterial();
+        material_sphere.map = sprite;
+        material_sphere.color = new THREE.Color(getRandomInt(0,1), getRandomInt(0,1), getRandomInt(0,1));
+        var geometry_sphere = new THREE.SphereGeometry(getRandomInt(8, 15), getRandomInt(17, 32), getRandomInt(6, 16));
+        var sphere = new THREE.Mesh(geometry_sphere, material_sphere);
+
+        var sphere_scale = getRandomInt(0.1,1);
+        sphere.scale.x = 0.1;
+        sphere.scale.y = 0.1; 
+        sphere.scale.z = 0.1;  
+        generateInitialPosition(sphere);
+        LuigiCreated = true;
+        scene.add(sphere);
+        changeCount(1);
+        return sphere;
+    }
+
+    //Generates the initial position of the sphere
+    function generateInitialPosition(sphere) {
+      var choice = getRandomInt(0,1);
+      if (choice == 0) {
+        sphere.position.x = getRandomInt(-12,-10);
+        sphere.position.y = getRandomInt(-5,5);
+      }
+      else {
+        sphere.position.x = getRandomInt(10,15);
+        sphere.position.y = getRandomInt(-5,5);
+      }
+    }
+
+    //Creating Sun
+    var sprite = new THREE.TextureLoader().load('./images/luigi.jpg');
+
+    var material_sun = new THREE.MeshBasicMaterial();
+    material_sun.map = sprite;
+    var geometry_sun = new THREE.SphereGeometry(15,32,16);
+    var sun = new THREE.Mesh(geometry_sun, material_sun);
+    sun.scale.x = 0.2;
+    sun.scale.y = 0.2;
+    sun.scale.z = 0.2;
+
+    //Function to give specific Luigi its own rotation
+    function rotateLuigi(Luigi) {
+      var rot = getRandomInt(0.01, 1);
+      Luigi.sphere.rotation.y += rot;
+    }
+
+    //Function to give specific Luigi its own orbit speed and orbit length
+    function orbitLuigi(Luigi) {
+      Luigi.sphere.position.x = Math.sin(Date.now() * Luigi.orbitSpeed) * Luigi.orbitLength;
+      Luigi.sphere.position.z = Math.cos(Date.now() * Luigi.orbitSpeed) * Luigi.orbitLength;  
+    }
+
+    //Deletes the last Luigi created
+    function deleteLuigi(Luigi) {
+        if (luigiCount > 0) {
+            changeCount(-1);
+            listLuigis.pop(Luigi);
+            scene.remove(Luigi.sphere);
+        }
+    }
+
+    //Adding sun to scene
+    scene.add(sun);
+    renderer.render(scene,camera);
+    controls = new THREE.OrbitControls( camera, renderer.domElement );
+    requestAnimationFrame(animateBigLuigi);
+
+
+    //Animates the sun and gives it its rotation in its own function
+    function animateBigLuigi() {
+      requestAnimationFrame(animateBigLuigi);
+      sun.rotation.y += 0.001;
+      renderer.render(scene,camera);
+    }
+
+    //Iterates through each current Luigi object and gives each one their own rotation and orbit
+    function animateLuigi() {
+      renderer.render(scene, camera);
+      listLuigis.forEach(Luigi => {
+        rotateLuigi(Luigi);
+        orbitLuigi(Luigi);
+      });
+      requestAnimationFrame(animateLuigi);
+    }
+
+    //Resizes the web elements from webpage resizing
+    function ResizeScene() {
+      var width = window.innerWidth;
+      var height = window.innerHeight;
+      renderer.setSize(width, height);
+      camera.aspect = width/height;
+      camera.updateProjectionMatrix();
+      renderer.render(scene, camera);
+    }
+
+    //Function to recognise keyboard input
+    function onKeyDown(event) {
+      switch (event.keyCode) {
+        //When the user hits 'Spacebar'
+        case 32: 
+        listLuigis.push(new Luigi(generateLuigi()));
+        break;
+        //When the user hits 'Backspace'
+        case 8:
+        deleteLuigi(listLuigis.slice(-1)[0]);
+      }
+    }
+
+    window.addEventListener('resize', ResizeScene);
+
+    document.addEventListener('keydown', onKeyDown, false);
+    
+    animateBigLuigi();
+    animateLuigi();
+
+    </script>
+  </body>
+</html>
