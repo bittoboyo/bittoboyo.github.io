@@ -1,6 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;500&display=swap');
 
+@font-face {
+	font-family: Cyber;
+	src: url("https://assets.codepen.io/605876/Blender-Pro-Bold.otf");
+	font-display: swap;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,12 +16,129 @@
 body {
 	background: #282c34;
 	color: #fff;
-	font-family: Monospace;
 	font-size: 13px;
 	line-height: 24px;
 	overscroll-behavior: none;
 	overflow: hidden;
 }
+
+.aboutbody {
+	position: relative;
+	font-size: 20px;
+	top: 50px;
+	left: 50px;
+	overscroll-behavior: none;
+	overflow: hidden;
+}
+
+/* .buttongithub {
+	color: white;
+	background-color: #6e5494;
+	border-radius: 20px;
+	display: flex;
+	position: relative;
+	top: 100px;
+	left: 350px;
+	justify-content: center;
+	align-items: center;
+	height: 8em;
+	width: 13em;
+	font-size: large;
+	font-weight: 600;
+}
+
+.buttonlinkedin {
+	color: #1cc49d;
+	background-color: #1b2f31;
+	border-radius: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 3em;
+	width: 8em;
+	font-size: large;
+	font-weight: 600;
+} */
+
+/* STANDARD BUTTON START */
+.rgbbutton {
+	padding: 2em 5em;
+	border: none;
+	outline: none;
+	color: rgb(255, 255, 255);
+	background: #111;
+	cursor: pointer;
+	position: relative;
+	top: 100px;
+	left: 550px;
+	z-index: 0;
+	border-radius: 10px;
+  }
+  
+  .rgbbutton:before {
+	content: "";
+	background: linear-gradient(
+	  45deg,
+	  #ff0000,
+	  #ff7300,
+	  #fffb00,
+	  #48ff00,
+	  #00ffd5,
+	  #002bff,
+	  #7a00ff,
+	  #ff00c8,
+	  #ff0000
+	);
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	background-size: 400%;
+	z-index: -1;
+	filter: blur(5px);
+	width: calc(100% + 4px);
+	height: calc(100% + 4px);
+	animation: glowingrgbbutton 20s linear infinite;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+	border-radius: 10px;
+  }
+  
+  @keyframes glowingrgbbutton {
+	0% {
+	  background-position: 0 0;
+	}
+	50% {
+	  background-position: 400% 0;
+	}
+	100% {
+	  background-position: 0 0;
+	}
+  }
+  
+  .rgbbutton:active {
+	color: #000;
+  }
+  
+  .rgbbutton:active:after {
+	background: transparent;
+  }
+  
+  .rgbbutton:hover:before {
+	opacity: 1;
+  }
+  
+  .rgbbutton:after {
+	z-index: -1;
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #191919;
+	left: 0;
+	top: 0;
+	border-radius: 10px;
+  }
+/* STANDARD BUTTON END */
 
 a {
 	color: #ff0;
