@@ -31,35 +31,6 @@ body {
 	overflow: hidden;
 }
 
-/* .buttongithub {
-	color: white;
-	background-color: #6e5494;
-	border-radius: 20px;
-	display: flex;
-	position: relative;
-	top: 100px;
-	left: 350px;
-	justify-content: center;
-	align-items: center;
-	height: 8em;
-	width: 13em;
-	font-size: large;
-	font-weight: 600;
-}
-
-.buttonlinkedin {
-	color: #1cc49d;
-	background-color: #1b2f31;
-	border-radius: 50px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 3em;
-	width: 8em;
-	font-size: large;
-	font-weight: 600;
-} */
-
 /* STANDARD BUTTON START */
 .rgbbutton {
 	padding: 2em 5em;
