@@ -19,7 +19,6 @@ body {
 	font-size: 13px;
 	line-height: 24px;
 	overscroll-behavior: none;
-	overflow: hidden;
 }
 
 .aboutbody {
@@ -122,7 +121,7 @@ body {
 .image {
 	position: relative;
 	display: inline-block;
-	width: 473px;
+	width: 468px;
 	/* width: 473px; */
 }
 
