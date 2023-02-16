@@ -24,7 +24,9 @@ body {
 
 .aboutbody {
 	position: relative;
-	font-size: 20px;
+	/* font-size: 20px; */
+	font-size: 1.2vw;
+	text-size-adjust: auto;
 	top: 50px;
 	left: 50px;
 	overscroll-behavior: none;
