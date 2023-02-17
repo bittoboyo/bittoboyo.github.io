@@ -19,7 +19,7 @@ body {
 	font-size: 13px;
 	line-height: 24px;
 	overscroll-behavior: none;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 
 .aboutbody {
@@ -27,8 +27,9 @@ body {
 	/* font-size: 1.2em; */
 	font-size: 20px;
 	text-size-adjust: auto;
-	top: 50px;
-	left: 50px;
+	text-align: center;
+	top: 30px;
+	/* left: 50px; */
 	overscroll-behavior: none;
 	overflow: hidden;
 }
@@ -50,8 +51,8 @@ body {
 	background: #111;
 	cursor: pointer;
 	position: relative;
-	top: 100px;
-	left: 50px;
+	top: 10vh;
+	left: 750px;
 	z-index: 0;
 	border-radius: 10px;
   }
@@ -119,60 +120,16 @@ body {
 	top: 0;
 	border-radius: 10px;
   }
+
+  @media only screen and (max-width: 414px){
+	.rgbbutton {
+		padding: 1.5em 3em;
+		top: 8vh;
+		left: 65px;
+	}
+}
 /* STANDARD BUTTON END */
 
-.image {
-	position: relative;
-	display: inline-block;
-	width: 473px;
-	/* width: 473px; */
-}
-
-.image_img {
-	display: flex;
-	width: 100%;
-}
-
-.image_overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.6);
-	color: white;
-	font-family: JetBrains Mono, monospace;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	opacity: 0;
-	transition: opacity 0.25s;
-}
-
-.image_overlay > * {
-	transform: translateY(20px);
-	transition: transform 0.25s;
-}
-
-.image_overlay:hover {
-	opacity: 1;
-}
-
-.image_overlay:hover > * {
-	transform: translateY(0);
-}
-
-.image_title {
-	font-size: 2em;
-	font-weight: bold;
-
-}
-
-.image_description {
-	font-size: 1.25em;
-	margin-top: 0.25em;
-}
 
 a {
 	color: #ff0;

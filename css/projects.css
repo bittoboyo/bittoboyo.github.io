@@ -121,8 +121,8 @@ body {
 .image {
 	position: relative;
 	display: inline-block;
-	width: 468px;
-	/* width: 473px; */
+	/* width: 468px; */
+	width: 24.6vw;
 }
 
 .image_img {
@@ -169,6 +169,18 @@ body {
 .image_description {
 	font-size: 1.25em;
 	margin-top: 0.25em;
+}
+
+@media only screen and (max-width: 414px){
+	.image {
+		width: 100vw;
+	}
+	.image_title {
+		font-size: 5vw;
+	}
+	.image_description {
+		font-size: 3vw;
+	}
 }
 
 a {
@@ -222,7 +234,7 @@ button {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 12px;
     text-decoration: none;
     border: 1px white;
 }
