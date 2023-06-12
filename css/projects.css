@@ -135,7 +135,6 @@ border-radius: 10px;
 .image {
 	position: relative;
 	display: inline-block;
-	/* width: 468px; */
 	width: 24vw;
 }
 
@@ -153,10 +152,12 @@ border-radius: 10px;
 	background: rgba(0, 0, 0, 0.6);
 	color: white;
 	font-family: JetBrains Mono, monospace;
-	display: flex;
+	display: inline-block;
+	text-align: center;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	overflow: auto;
 	opacity: 0;
 	transition: opacity 0.25s;
 }
@@ -182,7 +183,7 @@ border-radius: 10px;
 
 .image_description {
 	font-size: 1.25em;
-	margin-top: 0.25em;
+	margin-top: 1.5em;
 }
 
 @media only screen and (max-width: 414px){
